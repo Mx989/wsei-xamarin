@@ -44,7 +44,7 @@
                     </Label>
                 </Frame>
                 <Label
-                    Text="Świetna jakość!"
+                    Text="Świetna jakość powietrza!"
                     FontSize="20"
                     TextColor="Black"
                     FontAttributes="Bold"
