@@ -9,8 +9,8 @@
         <ResourceDictionary>
             <!--Podpunkt 1.5-->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Views/Resources/Styles.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Views/Resources/Colors.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Views/Resources/Styles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
