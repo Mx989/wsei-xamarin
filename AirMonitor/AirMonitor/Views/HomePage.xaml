@@ -8,7 +8,6 @@
     <ContentPage.Content>
         <StackLayout>
             <Button Clicked="NavigateToDetails" Text="Details Page"></Button>
-            <Button Clicked="NavigateToSettings" Text="Settings Page"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

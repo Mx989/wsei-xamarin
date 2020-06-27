@@ -31,6 +31,7 @@ namespace AirMonitor
         private Xamarin.Forms.TabbedPage prepareTabbedPage()
         {
             var page = new Xamarin.Forms.TabbedPage();
+            page.On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
             page.Title = "Main Tabbed Page";
             page.Children.Add(new HomePage
             {
@@ -40,7 +41,6 @@ namespace AirMonitor
             {
                 Title = "Settings"
             });
-            page.On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
             return page;
         }
     }
