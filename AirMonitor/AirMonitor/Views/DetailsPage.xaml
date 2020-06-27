@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="AirMonitor.Views.DetailsPage"
              xmlns:controls="clr-namespace:AirMonitor.Views.Controls"
+             xmlns:helpers="clr-namespace:AirMonitor.ViewModels.Helpers"
              BackgroundColor="#f9f9f9">
     <!--Podpunkt 1 - styl dla labeli-->
     <ContentPage.Resources>
@@ -14,6 +15,8 @@
                 <Setter Property="FontSize" Value="14"></Setter>
                 <Setter Property="TextColor" Value="Black"></Setter>
             </Style>
+            <helpers:PercentConverter x:Key="PercentConverter"/>
+            <helpers:StringConverter x:Key="StringConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     
@@ -25,11 +28,10 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Style="{StaticResource resultSpan}"
-                                    Text="56"/>
+                                    Text="{Binding Result}"/>
                                 <Span
                                     Text="{x:Static x:Environment.NewLine}"/>
-                                <Span Style="{StaticResource caqiSpan}"
-                                    Text="CAQI"/>
+                                <Span Style="{StaticResource caqiSpan}" Text="CAQI"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -94,10 +96,8 @@
                     <controls:ContentWithHeader.ControlContent>
                         <StackLayout>
                             <Label
-                                Text="95%"
-                                FontSize="20"/>
-                            <Slider Style="{StaticResource slider}"
-                                Value="0.95"/>
+                                Text="{Binding Humidity, Converter={StaticResource PercentConverter}}" FontSize="20"/>
+                            <Slider Style="{StaticResource slider}" Value="{Binding Humidity}" Maximum="100" Minimum="0"/>
                         </StackLayout>
                     </controls:ContentWithHeader.ControlContent>
                 </controls:ContentWithHeader>
@@ -108,13 +108,13 @@
                     <controls:ContentWithHeader.ControlContent>
                         <StackLayout>
                             <Label
-                                Text="1026 hPa"
+                                Text="{Binding Pressure, Converter={StaticResource StringConverter}}"
                                 FontSize="20"/>
                             <!-- Set Maximum before Minimum in Slider -->
                             <Slider Style="{StaticResource slider}"
                                 Maximum="1100"
                                 Minimum="900"
-                                Value="1026"/>
+                                Value="{Binding Pressure}"/>
                         </StackLayout>
                     </controls:ContentWithHeader.ControlContent>
                 </controls:ContentWithHeader>
