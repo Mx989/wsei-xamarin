@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AirMonitor.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,9 @@ namespace AirMonitor.Views
         public HomePage()
         {
             InitializeComponent();
+            BindingContext = new HomeViewModel(Navigation);
         }
-
-        private async void NavigateToDetails(object sender, EventArgs e)
-        {
-            var page = new DetailsPage();
-            await Navigation.PushAsync(page);
-        }        
+    
         
     }
 }
