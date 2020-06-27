@@ -6,6 +6,75 @@
              mc:Ignorable="d"
              x:Class="AirMonitor.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <!-- Podpunkt 1.2 - Wszystkie style z MainPage.xaml -->
+            <Style x:Key="stackLayout" TargetType="StackLayout">
+                <Setter Property="Padding" Value="24"/>
+                <Setter Property="Spacing" Value="12"/>
+            </Style>
+            <Style x:Key="frameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="50"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="100"/>
+                <Setter Property="WidthRequest" Value="100"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="BackgroundColor" Value="#33f069"/>
+                <Setter Property="BorderColor" Value="Red"/>
+            </Style>
+            <Style x:Key="labelCentered" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            <Style x:Key="resultSpan" TargetType="Span">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="32"/>
+            </Style>
+            <Style x:Key="caqiSpan" TargetType="Span">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="TextColor" Value="DarkSlateGray"/>
+            </Style>
+            <Style x:Key="qualityLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>            
+            <Style x:Key="boxSpace" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="BackgroundColor" Value="LightGray"/>
+            </Style>
+            <Style x:Key="span1" TargetType="Span">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>            
+            <Style x:Key="span2" TargetType="Span">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style x:Key="boxView" TargetType="BoxView">
+                <Setter Property="Grid.Column" Value="1"></Setter>
+                <Setter Property="VerticalOptions" Value="Fill"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="WidthRequest" Value="1"></Setter>
+                <Setter Property="BackgroundColor" Value="LightGray"></Setter>
+            </Style>
+            <Style x:Key="slider" TargetType="Slider">
+                <Setter Property="MaximumTrackColor" Value="Gray"></Setter>
+                <Setter Property="MinimumTrackColor" Value="CornflowerBlue"></Setter>
+                <Setter Property="ThumbColor" Value="CornflowerBlue"></Setter>
+            </Style>
+            <Style x:Key="imageHelp" TargetType="ImageButton">
+                <Setter Property="Padding" Value="12,24"></Setter>
+                <Setter Property="HorizontalOptions" Value="End"></Setter>
+                <Setter Property="VerticalOptions" Value="Start"></Setter>
+                <Setter Property="WidthRequest" Value="48"></Setter>
+                <Setter Property="HeightRequest" Value="72"></Setter>
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                <Setter Property="Source" Value="baseline_help_outline_black_24.png"></Setter>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
