@@ -1,17 +1,23 @@
-﻿using System;
+﻿using AirMonitor.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace AirMonitor.ViewModels
 {
-    public class DetailsViewModel : INotifyPropertyChanged
+    public class DetailsViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        
 
         public DetailsViewModel()
         {
         }
+
+
+
+
 
         private int _caqiValue = 57;
         public int CaqiValue
@@ -85,20 +91,34 @@ namespace AirMonitor.ViewModels
             set => SetProperty(ref _pressureValue, value);
         }
 
-        private void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        public Measurement Measurement { set { AssignMeasurement(value); } }
+
+        public void AssignMeasurement(Measurement measurement)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            MeasurementItem current = measurement.Current;
+            AirQualityIndex index = current.Indexes.FirstOrDefault(c => c.Name == "AIRLY_CAQI");
+            MeasurementValue[] values = current.Values;
+            AirQualityStandard[] standards = current.Standards;
+
+            Pm10Value = GetPM("PM10", current).Value;
+            Pm25Value = GetPM("PM25", current).Value;
+            Pm10Percent = GetPM("PM10", current).Percentage;
+            Pm25Percent = GetPM("PM25", current).Percentage;
+
+            CaqiValue = Convert.ToInt32(Math.Round(double.Parse(index.Value)));
+            CaqiTitle = index.Description;
+            CaqiDescription = index.Advice;
+
+            HumidityValue = Convert.ToInt32(Math.Round(double.Parse(values.FirstOrDefault(value => value.Name == "HUMIDITY").Value)));
+            PressureValue = Convert.ToInt32(Math.Round(double.Parse(values.FirstOrDefault(value => value.Name == "PRESSURE").Value)));
         }
 
-        private bool SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        private PM GetPM(string name, MeasurementItem current)
         {
-            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-
-            field = value;
-
-            RaisePropertyChanged(propertyName);
-
-            return true;
+            int value = int.Parse(current.Values.FirstOrDefault(val => val.Name == name).Value);
+            int percentage = (int)Math.Round(current.Standards.FirstOrDefault(standard => standard.Pollutant == name).Percent);
+            return new PM(value, percentage);
         }
+
     }
 }

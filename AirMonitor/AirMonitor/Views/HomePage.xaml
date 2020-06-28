@@ -3,10 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AirMonitor.Views.HomePage"
              Title="Home Page">
-    <Button
+
+    <Grid>
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsEnabled="{Binding IsLoading}" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" VerticalOptions="Center" />
+        <ListView IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshMeasurementsCommand}"
+                      IsRefreshing="{Binding IsRefreshing}" 
+                      ItemsSource="{Binding Measurements}" 
+                      ItemTapped="ListView_ItemTapped"
+                      SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Station.Address.Street"
+                              Detail="{Binding CurrentDisplayValue, StringFormat='CAQI: {0}'}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+    <!--<Button
         Text="Go to details"
         HorizontalOptions="Center"
         VerticalOptions="Center"
         Command="{Binding GoToDetailsCommand}"
-        />
+        />-->
 </ContentPage>
